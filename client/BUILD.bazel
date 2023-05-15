@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "client_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/dolthub/ld/go/cmd/doltlab/server_client_header_tester/client",
+    visibility = ["//visibility:private"],
+    deps = ["@org_golang_x_net//http2"],
+)
+
+go_binary(
+    name = "client",
+    embed = [":client_lib"],
+    visibility = ["//visibility:public"],
+)
